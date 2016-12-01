@@ -1,3 +1,6 @@
+#ifndef NeuralNetwork_h
+#define NeuralNetwork_h
+
 #include "Connection.h"
 #include "NeuralNode.h"
 #include <cstdlib>
@@ -19,6 +22,17 @@ class NeuralNetwork{
 		vector<NeuralNode*> getOutputLayer();
 		vector<NeuralNode*> getLayer(int layerIndex);
 
+		vector<Connection*> getDownstreamConnections();
+		vector<Connection*> getUpstreamConnections();
+
+		void addLayer(int layerIndex, int numLayerNodes, string function);
+		void clearNetworkResponse();
+		void clearNetworkResponseSum();
+		void randomizeWeights();
+		void setNetworkLearningRate(double theRate);
+		void setTargets(vector<double> targets);
+
+
 	private:
 		int m_nInputs;
 		int m_nOutputs;
@@ -28,3 +42,6 @@ class NeuralNetwork{
 		vector<Connection*> m_connections;
 		vector<NeuralNode*> m_neuralNodes;
 };
+
+
+#endif

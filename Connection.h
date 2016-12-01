@@ -1,9 +1,15 @@
+#ifndef Connection_h
+#define Connection_h
+
+
 #include "NeuralNode.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 
 using namespace std;
+
+class NeuralNode;
 
 class Connection{
 
@@ -32,3 +38,6 @@ class Connection{
 
 
 };
+
+
+#endif

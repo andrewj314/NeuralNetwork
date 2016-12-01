@@ -3,22 +3,28 @@
 //ajohnson@cern.ch
 //
 //
-include <vector>
-include <string>
-include <iostream>
-include <fstream>
-include <math.h>
-include <stdio.h>
-include <stdlib.h>
-include <Connection.h>
+
+#ifndef NeuralNode_h
+#define NeuralNode_h
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Connection.h"
 
 using namespace std;
+
+class Connection;
 
 class NeuralNode{
 
 	public:
 		//Create a new neuron in a given layer
-		NeuralNode(int layerIndex);
+		NeuralNode(int layerIndex, string function);
 		//Neuron destructor
 		~NeuralNode();
 
@@ -28,12 +34,14 @@ class NeuralNode{
 		double getDelta();
 		double getNDownstreamConnections();
 		double getNUpstreamConnections();
-		bool isInputNode();
-		bool isOutputNode();
-		bool isBiasNode();
+		string getFunction();
+
 		vector<Connection*> getDownstreamConnections();
 		vector<Connection*> getUpstreamConnections();
 	        
+		bool isInputNode();
+		bool isOutputNode();
+		bool isBiasNode();
 
 		void addDownstreamConnection(Connection* connection);
 		void addUpstreamConnection(Connection* connection);
@@ -50,6 +58,7 @@ class NeuralNode{
 		void setResponse(double theResponse);
 		void setResponseWithSum(double theSum); 	
 		void setTarget(double theTarget);
+		void setFunction(string theFunction);
 
 
 	private:
@@ -69,7 +78,10 @@ class NeuralNode{
 		double m_delta;
 		double m_target;
 
-		
+		string m_function;
 
 
 };
+
+
+#endif
